@@ -1,0 +1,28 @@
+{
+  "name": "crosspower",
+  "description": "Deploy vless on Heroku.",
+  "keywords": [
+    "nothing"
+  ],
+  "env": {
+    "UUID": {
+      "description": "The ID for vmess/vless and password for trojan.",
+      "value": "7a03d0b1-547c-3058-653a-67b5dd069990"
+    },
+	"VLESS_PATH": {
+      "description": "ws path",
+      "value": "/app"
+    },
+	"TROJAN_PATH": {
+      "description": "ws path",
+      "value": "/video"
+    },
+	"VMESS_PATH": {
+      "description": "ws path",
+      "value": "/img"
+    }
+  },
+  "website": "https://github.com/GeekNAUer/",
+  "repository": "https://github.com/GeekNAUer/vlessheroku",
+  "stack": "container"
+}
