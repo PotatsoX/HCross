@@ -148,32 +148,20 @@ cat << EOF > /usr/local/etc/xray/config.json
         "rules": [
             {
                 "domain": [
-                    "geosite:cn"
+                    "geosite:cn",
+					"geosite:category-ads-all"
                 ],
                 "outboundTag": "block",
                 "type": "field"
             },
             {
                 "ip": [
-                    "geoip:cn"
+                    "geoip:cn",
+					"geoip:private"
                 ],
                 "outboundTag": "block",
                 "type": "field"
-            },
-			{
-				"domain": [
-					"geosite:category-ads-all"
-				],
-                "outboundTag": "block",
-                "type": "field"
-            },
-			{
-				"ip": [
-					"geoip:private"
-				],
-				"outboundTag": "block",
-				"type": "field"
-			}
+            }
        ]
 	}
 }
