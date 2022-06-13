@@ -170,7 +170,7 @@ cat << EOF > /usr/local/etc/xray/config.json
 					"geoip:private"
 				],
 				"outboundTag": "block",
-				type": "field"
+				"type": "field"
 			}
        ]
 	}
