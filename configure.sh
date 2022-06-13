@@ -162,9 +162,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 				"domain": [
 					"geosite:category-ads-all"
 				],
-				"outboundTag": "block",
-				"type": "field
-			},
+                "outboundTag": "block",
+                "type": "field"
+            },
 			{
 				"ip": [
 					"geoip:private"

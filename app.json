@@ -7,7 +7,7 @@
   "env": {
     "UUID": {
       "description": "The ID for vmess/vless and password for trojan.",
-      "value": "7a03d0b1-547c-3058-653a-67b5dd069990"
+      "value": "1d9b3ee2-35b2-46af-b512-fe88610595de"
     },
 	"VLESS_PATH": {
       "description": "ws path",
