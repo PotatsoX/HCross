@@ -127,10 +127,53 @@ cat << EOF > /usr/local/etc/xray/config.json
         }
     ],
     "outbounds": [
-        {
-            "protocol": "freedom"
-        }
-    ]
+		{
+			"tag": "direct",
+			"protocol": "freedom"
+		},
+		{
+		  "tag": "block",
+		  "protocol": "blackhole",
+		  "settings": {
+			"response": {
+			  "type": "http"
+			}
+		  }
+		}
+    ],
+	"routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "domain": [
+                    "geosite:cn"
+                ],
+                "outboundTag": "block",
+                "type": "field"
+            },
+            {
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "block",
+                "type": "field"
+            },
+			{
+				"domain": [
+					"geosite:category-ads-all"
+				],
+				"outboundTag": "block",
+				"type": "field
+			},
+			{
+				"ip": [
+					"geoip:private"
+				],
+				"outboundTag": "block",
+				type": "field"
+			}
+       ]
+	}
 }
 EOF
 
