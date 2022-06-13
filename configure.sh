@@ -5,6 +5,8 @@ mkdir /tmp/xray
 curl -L -H "Cache-Control: no-cache" -o /tmp/xray/xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
 unzip /tmp/xray/xray.zip -d /tmp/xray
 install -m 755 /tmp/xray/xray /usr/local/bin/xray
+curl -L https://github.com/v2fly/geoip/releases/latest/download/geoip.dat -o /usr/local/bin/geoip.dat
+curl -L https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat -o /usr/local/bin/geosite.dat
 
 # Remove temporary directory
 rm -rf /tmp/xray
