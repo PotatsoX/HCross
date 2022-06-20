@@ -107,7 +107,7 @@ cat << EOF > /usr/local/etc/xray/config.json
                 }
             }
         },
-		{
+	{
             "port": 3004,
             "listen": "127.0.0.1",
             "protocol": "vless",
@@ -122,7 +122,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             "streamSettings": {
                 "network": "ws",
                 "security": "none",
-				"wsSettings": {
+                "wsSettings": {
                     "path": "$VLESS_PATH"
                 }
             }
@@ -130,16 +130,16 @@ cat << EOF > /usr/local/etc/xray/config.json
     ],
     "outbounds": [
 		{
-			"tag": "direct",
-			"protocol": "freedom"
+		  "tag": "direct",
+		  "protocol": "freedom"
 		},
 		{
 		  "tag": "block",
 		  "protocol": "blackhole",
 		  "settings": {
-			"response": {
-			  "type": "http"
-			}
+                    "response": {
+                      "type": "http"
+                    }
 		  }
 		}
     ],
@@ -148,8 +148,7 @@ cat << EOF > /usr/local/etc/xray/config.json
         "rules": [
             {
                 "domain": [
-                    "geosite:cn",
-					"geosite:category-ads-all"
+                    "geosite:cn"
                 ],
                 "outboundTag": "block",
                 "type": "field"
@@ -157,7 +156,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             {
                 "ip": [
                     "geoip:cn",
-					"geoip:private"
+                    "geoip:private"
                 ],
                 "outboundTag": "block",
                 "type": "field"
