@@ -137,9 +137,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 		  "tag": "block",
 		  "protocol": "blackhole",
 		  "settings": {
-                    "response": {
-                      "type": "http"
-                    }
+				"response": {
+				  "type": "http"
+				}
 		  }
 		}
     ],
@@ -148,7 +148,15 @@ cat << EOF > /usr/local/etc/xray/config.json
         "rules": [
             {
                 "domain": [
-                    "geosite:cn"
+                    "geosite:google"
+                ],
+                "outboundTag": "direct",
+                "type": "field"
+            },
+            {
+                "domain": [
+                    "geosite:cn",
+					"geosite:category-ads-all"
                 ],
                 "outboundTag": "block",
                 "type": "field"
