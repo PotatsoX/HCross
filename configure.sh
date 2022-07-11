@@ -1,3 +1,4 @@
+
 #!/bin/sh
 
 # Download and install xray
@@ -31,7 +32,7 @@ cat << EOF > /usr/local/etc/xray/config.json
                 ],
                 "decryption": "none",
                 "fallbacks": [
-		    {
+					{
                         "dest": 3001
                     },
                     {
@@ -51,13 +52,14 @@ cat << EOF > /usr/local/etc/xray/config.json
         {
             "port": 3001,
             "listen": "127.0.0.1",
-            "protocol": "trojan",
+            "protocol": "vless",
             "settings": {
                 "clients": [
                     {
-                        "password": "$UUID"
+                        "id": "$UUID"
                     }
-                ]
+                ],
+                "decryption": "none"
             },
             "streamSettings": {
                 "network": "ws",
@@ -83,7 +85,7 @@ cat << EOF > /usr/local/etc/xray/config.json
                 }
             }
         },
-		{
+        {
             "port": 3003,
             "listen": "127.0.0.1",
             "protocol": "vless",
@@ -113,9 +115,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 		  "tag": "block",
 		  "protocol": "blackhole",
 		  "settings": {
-			"response": {
-			  "type": "http"
-			}
+				"response": {
+				  "type": "http"
+				}
 		  }
 		}
     ],
@@ -132,7 +134,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             {
                 "domain": [
                     "geosite:cn",
-                    "geosite:category-ads-all"
+					"geosite:category-ads-all"
                 ],
                 "outboundTag": "block",
                 "type": "field"
@@ -145,7 +147,7 @@ cat << EOF > /usr/local/etc/xray/config.json
                 "outboundTag": "block",
                 "type": "field"
             }
-		]
+        ]
 	}
 }
 EOF
