@@ -22,131 +22,50 @@ cat << EOF > /usr/local/etc/xray/config.json
     "inbounds": [
         {
             "port": $PORT,
-            "protocol": "vless",
+			"protocol": "vless",
             "settings": {
-                "clients": [
-                    {
-                        "id": "$UUID",
-                        "flow": "xtls-rprx-direct"
-                    }
-                ],
+                "clients": [{"id": "$UUID","flow": "xtls-rprx-direct"}],
                 "decryption": "none",
                 "fallbacks": [
-					{
-                        "dest": 3001
-                    },
-                    {
-                        "path": "$TROJAN_PATH",
-                        "dest": 3002
-                    },
-                    {
-                        "path": "$VLESS_PATH",
-                        "dest": 3003
-                    }
+					{"dest": 3001},
+                    {"path": "$TROJAN_PATH","dest": 3002},
+                    {"path": "$VLESS_PATH","dest": 3003}
                 ]
             },
-            "streamSettings": {
-                "network": "tcp"
-            }
+            "streamSettings": {"network": "tcp"}
         },
         {
             "port": 3001,
             "listen": "127.0.0.1",
             "protocol": "vless",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "$UUID"
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none"
-            }
+            "settings": {"clients": [{"id": "$UUID"}],"decryption": "none"},
+            "streamSettings": {"network": "ws","security": "none"}
         },
         {
             "port": 3002,
             "listen": "127.0.0.1",
             "protocol": "trojan",
-            "settings": {
-                "clients": [
-                    {
-                        "password": "$UUID"
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "$TROJAN_PATH"
-                }
-            }
+            "settings": { "clients": [{"password": "$UUID"}]},
+            "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "$TROJAN_PATH"}}
         },
         {
             "port": 3003,
             "listen": "127.0.0.1",
             "protocol": "vless",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "$UUID"
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "$VLESS_PATH"
-                }
-            }
+            "settings": {"clients": [{ "id": "$UUID"}],"decryption": "none"},
+            "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "$VLESS_PATH"}}
         }
     ],
     "outbounds": [
-		{
-		  "tag": "direct",
-		  "protocol": "freedom"
-		},
-		{
-		  "tag": "block",
-		  "protocol": "blackhole",
-		  "settings": {
-				"response": {
-				  "type": "http"
-				}
-		  }
-		}
+		{"tag": "direct","protocol": "freedom"},
+		{"tag": "block","protocol": "blackhole","settings": {"response": {"type": "http"}}}
     ],
 	"routing": {
         "domainStrategy": "IPIfNonMatch",
         "rules": [
-            {
-                "domain": [
-                    "geosite:google"
-                ],
-                "outboundTag": "direct",
-                "type": "field"
-            },
-            {
-                "domain": [
-                    "geosite:cn",
-					"geosite:category-ads-all"
-                ],
-                "outboundTag": "block",
-                "type": "field"
-            },
-            {
-                "ip": [
-                    "geoip:cn",
-                    "geoip:private"
-                ],
-                "outboundTag": "block",
-                "type": "field"
-            }
+            {"outboundTag": "direct","domain": ["geosite:google"],"type": "field"},
+            {"outboundTag": "block","domain": ["geosite:cn","geosite:category-ads-all"],"type": "field"},
+            {"outboundTag": "block","ip": ["geoip:cn","geoip:private"],"type": "field"}
         ]
 	}
 }
