@@ -31,7 +31,7 @@ cat << EOF > /usr/local/etc/xray/config.json
                 ],
                 "decryption": "none",
                 "fallbacks": [
-					{
+		    {
                         "dest": 3001
                     },
                     {
@@ -39,12 +39,8 @@ cat << EOF > /usr/local/etc/xray/config.json
                         "dest": 3002
                     },
                     {
-                        "path": "$VMESS_PATH",
-                        "dest": 3003
-                    },
-                    {
                         "path": "$VLESS_PATH",
-                        "dest": 3004
+                        "dest": 3003
                     }
                 ]
             },
@@ -55,14 +51,13 @@ cat << EOF > /usr/local/etc/xray/config.json
         {
             "port": 3001,
             "listen": "127.0.0.1",
-            "protocol": "vless",
+            "protocol": "trojan",
             "settings": {
                 "clients": [
                     {
-                        "id": "$UUID"
+                        "password": "$UUID"
                     }
-                ],
-                "decryption": "none"
+                ]
             },
             "streamSettings": {
                 "network": "ws",
@@ -88,27 +83,8 @@ cat << EOF > /usr/local/etc/xray/config.json
                 }
             }
         },
-        {
+		{
             "port": 3003,
-            "listen": "127.0.0.1",
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "$UUID"
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "$VMESS_PATH"
-                }
-            }
-        },
-	{
-            "port": 3004,
             "listen": "127.0.0.1",
             "protocol": "vless",
             "settings": {
@@ -137,9 +113,9 @@ cat << EOF > /usr/local/etc/xray/config.json
 		  "tag": "block",
 		  "protocol": "blackhole",
 		  "settings": {
-				"response": {
-				  "type": "http"
-				}
+			"response": {
+			  "type": "http"
+			}
 		  }
 		}
     ],
@@ -156,7 +132,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             {
                 "domain": [
                     "geosite:cn",
-					"geosite:category-ads-all"
+                    "geosite:category-ads-all"
                 ],
                 "outboundTag": "block",
                 "type": "field"
@@ -169,7 +145,7 @@ cat << EOF > /usr/local/etc/xray/config.json
                 "outboundTag": "block",
                 "type": "field"
             }
-       ]
+		]
 	}
 }
 EOF

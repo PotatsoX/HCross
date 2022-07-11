@@ -5,7 +5,6 @@
 - 用户ID：**1d9b3ee2-35b2-46af-b512-fe88610595de**（默认）
 - 传输协议：**ws**
 - 传输层安全：**tls**
-- 路径：
+- 默认路径：
   - xless：**/app**
-  - xmess：**/img**
   - xrojan：**/video**
