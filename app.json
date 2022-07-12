@@ -16,10 +16,6 @@
 	"TROJAN_PATH": {
       "description": "ws path",
       "value": "/video"
-    },
-	"VMESS_PATH": {
-      "description": "ws path",
-      "value": "/img"
     }
   },
   "website": "https://github.com/GeekNAUer/",
