@@ -22,12 +22,12 @@ cat << EOF > /usr/local/etc/xray/config.json
     "inbounds": [
         {
             "port": $PORT,
-			"protocol": "vless",
+            "protocol": "vless",
             "settings": {
-                "clients": [{"id": "$UUID","flow": "xtls-rprx-direct"}],
+                "clients": [{"id": "$UUID","flow": ""}],
                 "decryption": "none",
                 "fallbacks": [
-					{"dest": 3001},
+                    {"dest": 3001},
                     {"path": "$TROJAN_PATH","dest": 3002},
                     {"path": "$VLESS_PATH","dest": 3003}
                 ]
