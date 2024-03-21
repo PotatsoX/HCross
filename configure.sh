@@ -54,6 +54,22 @@ cat << EOF > /usr/local/etc/xray/config.json
             "protocol": "vless",
             "settings": {"clients": [{ "id": "$UUID"}],"decryption": "none"},
             "streamSettings": {"network": "ws","security": "none","wsSettings": {"path": "$VLESS_PATH"}}
+        },
+		{
+            "listen": "0.0.0.0",
+            "port": $SPORT,
+            "protocol": "socks",
+            "settings": {
+                "auth": "password",
+                "accounts": [
+                    {
+                        "user": "$SUSER",
+                        "pass": "$SPASS"
+                    }
+                ],
+                "udp": true,
+                "ip": "127.0.0.1"
+            }
         }
     ],
     "outbounds": [
